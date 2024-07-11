@@ -10,6 +10,79 @@
         (i) Input Parameters (Function can be with Parameters or Without Parameters Function always return only 1 value)
 ------------------------------------------------------------
 
+(I) PROCEDURE ( we can call Stored PROCEDURE )
+
+CREATE TABLE IF NOT EXISTS capitals(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    date DATE NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    payment ENUM('MMK','USD') NOT NULL,
+    accounts ENUM('credit','debit') NOT NULL
+);
+
+DESC capitals;
+SHOW CREATE TABLE capitals;
+SHOW INDEX FORM capitals;
+
+INSERT INTO capitals (date,name,amount,payment,accounts)
+VALUES ('2024-06-20','mr.tin',500000,1,1),\
+('2024-06-21','ms.july',300000,1,1),
+('2024-06-21','ms.july',200000,1,1),
+('2024-07-1','mr.tin',1000,2,1),
+('2024-06-21','mr.tin',3000,2,1),
+('2024-07-2','ms.july',3000,2,1),
+('2024-07-5','mr.tin',1000,2,1),
+('2024-07-6','mr.tin',1000,2,1),
+('2024-07-10','mr.tin',200000,1,2),
+
+SELECT * FROM capitals;
+
+=> capital by MMK
+SELECT name,SUM(amount),payment,accounts
+FROM capitals
+WHERE accounts = 'credit' AND payment='MMK'
+GROUP BY name;
+
+=> capital by USD
+SELECT name,SUM(amount),payment,accounts
+FROM capitals
+WHERE accounts = 'credit' AND payment='USD'
+GROUP BY name;
+
+CREATE VIEW vw_capitalbymmk AS 
+SELECT name,SUM(amount),payment,accounts
+FROM capitals
+WHERE accounts = 'credit' AND payment='MMK'
+GROUP BY name;
+
+CREATE VIEW vw_capitalbyusd AS 
+SELECT name,SUM(amount),payment,accounts
+FROM capitals
+WHERE accounts = 'credit' AND payment='USD'
+GROUP BY name;
+
+SHOW FULL TABLES WHERE TABLE_TYPE LIKE 'VIEW';
+
+SELECT * FROM vw_capitalbymmk;
+SELECT * FROM vw_capitalbyusd;
+
+--------------------------------------------------------------
+
+=> capital by accounts
+
+SELECT date,name,amount,paymount,accounts
+FROM vw_capitalbyusd
+WHERE accounts = "credit"
+ORDER BY date DESC;
+
+SELECT date,name,amount,paymount,accounts
+FROM vw_capitalbyusd
+WHERE accounts = "debit"
+ORDER BY date DESC;
+
+11PR
+
 
 
 
