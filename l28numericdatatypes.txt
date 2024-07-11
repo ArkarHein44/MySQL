@@ -1,0 +1,108 @@
+=> Numeric Data Types 
+
+Data Type                           Description
+BIT(size)                           A bit-value type, from 1 to 64, default value is 1
+BOOL(size)                          zero is considered as false, Non-Zero values are considered as true
+BOOLEAN                             zero is considered as false, Non-Zero values are considered as true
+
+TINYINT(size)                       A very small integer , Singed range -128 to 127, Unsigned range 0 to 255                   
+SMALLINT(size)                      A small integer , Singed range -3277 to 3276, Unsigned range 0 to 6555 (6 kb)
+MEDIUMINT(size)                     A small integer , Singed range -8388608 to 8388607, Unsigned range 0 to 165777215 (16 mb)
+INT(size)                           A small integer , Singed range -2147483648 to 8388607, Unsigned range 0 to 4294967295 (4 gb)                  
+INTEGER(size)                       A small integer , Singed range -3277 to 3276, Unsigned range 0 to 6555 (6 kb)
+BIGINT()                            A large integer
+
+
+DECIMAL(size,d)                     fixed-point number, default value for d is 0                 
+                                    e.g; (999.99) is digit and 2 decimal DECIMAL(5,2)
+DEC(size,d)                         fixed-point number, default value for d is 0   
+
+FLOAT(size,p)                       A floating point number (Approximate Value)
+FLOAT(p)                            A floating point number (Approximate Value),p is optional. p is from 0 to 24
+DOUBLE(size,p)                      A floating point number (Approximate Value),p is optional. p is from 25 to 53
+
+
+//Note =    DECIMAL for finance (such as money)
+            FLOAT & DOUBLE (for science app)
+
+---------------------------------------------------
+
+=> FLOAT() vs DOUBLE()
+
+CREATE TABLE IF NOT EXISTS shoppings(
+    name VARCHAR(20),
+    purchaseprice FLOAT,
+    sellprice FLOAT(4)
+);
+
+DESC shoppings;
+SHOW CREATE TABLE shoppings;
+
+*result 112233
+INSERT INTO shoppings(name,purchaseprice,sellprice)
+VALUES ('redbull',100,100),
+        ('sponsor',500,500.34),
+        ('joey',800,800.56),
+        ('deedo',250,250.889),
+        ('cake',9000,10000);
+
+SELECT * FROM shoppings;
+
+*result 112233
+INSERT INTO shoppings(name,purchaseprice,sellprice)
+VALUES ('bridnest',112233,112233.45);
+
+*result 11223300
+INSERT INTO shoppings(name,purchaseprice,sellprice)
+VALUES ('water',11223344,11223344.45);
+
+*result 1122330000
+INSERT INTO shoppings(name,purchaseprice,sellprice)
+VALUES ('water',1122334455.45,1122334455.45);
+
+SELECT * FROM shoppings;
+---------------------------------------------------
+=>DOUBLE 
+
+CREATE TABLE IF NOT EXISTS buyings(
+    name VARCHAR(20),
+    purchaseprice FLOAT,
+    sellprice DOUBLE
+);
+
+DESC shoppings;
+SHOW CREATE TABLE buyings;
+
+INSERT INTO buyings(name,purchaseprice,sellprice)
+VALUES ('redbull',100,100),
+        ('sponsor',500,500.34),
+        ('joey',800,800.56),
+        ('deedo',250.889,250.889),
+        ('cake',10000,10000);
+
+SELECT * FROM buyings;
+
+*result 112233 , 112233.45
+INSERT INTO buyings(name,purchaseprice,sellprice)
+VALUES ('bridnest',112233,112233.45);
+
+*result 11223300, 11223344.45
+INSERT INTO buyings(name,purchaseprice,sellprice)
+VALUES ('water',11223344,11223344.45);
+
+*result 1122330000, 1122334455.45
+INSERT INTO buyings(name,purchaseprice,sellprice)
+VALUES ('water',1122334455.45,1122334455.45);
+
+*result 1.12233e17, 1.12233445566778899e17
+INSERT INTO buyings(name,purchaseprice,sellprice)
+VALUES ('water',112233445566778899.45,112233445566778899.45);
+
+SELECT * FROM buyings;
+---------------------------------------------------
+
+=>e/e
+HTML input number type allow 'e/E' buz e stand for exponential (exponent) which is a numeric symbol 
+Eg. 200000 can be written as 2e5 (3e4 = 3x10^4 = 30000);
+
+shift_6 = ^(call caret or Hat)

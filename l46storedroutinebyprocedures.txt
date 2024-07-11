@@ -1,0 +1,15 @@
+=> Stored Routines
+(i) PROCEDURE (we can call Stored PROCEDURE)
+    (a) IN = Input Parameters
+    (b) OUT = Output Parameters
+    (c) INOUT = Inout Parameters
+
+(ii) FUNCTION
+    (a) Builtin Functions
+    (b) User Define Function (Custom)
+        (i) Input Parameters (Function can be with Parameters or Without Parameters Function always return only 1 value)
+------------------------------------------------------------
+
+
+
+

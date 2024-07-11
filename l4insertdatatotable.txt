@@ -1,0 +1,77 @@
+=> Insert data to table
+
+Method 1 = Syntax
+
+INSERT INTO tablename (column1,column2,column3,...);VALUE (value1,vlaue2,value3,...);
+
+Method 2 = Syntax
+
+INSERT INTO tablename
+VALUE(value1,vlaue2,value3,...);
+
+
+
+=> Insert Multi Datas
+Method 1 = Syntax
+
+INSERT INTO tablename (column1,column2,column3,...);VALUE   (value1,vlaue2,value3,...),
+        (value1,vlaue2,value3,...),
+        .....;
+
+Method 2 = Syntax
+
+INSERT INTO tablename
+VALUE   (value1,vlaue2,value3,...),
+        (value1,vlaue2,value3,...),
+        .....;
+
+
+id name age phone
+
+INSERT INTO tablename (id,name,age,phone);
+VALUES (1,'aung aung',18);
+---------------------------------------------------------
+
+=>EXERCISE
+
+CREATE TABLE IF NOT EXISTS persons(
+    id INT,
+    firstname VARCHAR(20),
+    lastname VARCHAR(20),
+    city VARCHAR(30),
+    address VARCHAR(200)
+);
+
+DESC persons;
+
+INSERT INTO persons(id,firstname,lastname,city,address)
+VALUE (1,'aung','kyaw','yangon','no.9,myittar st');
+
+INSERT INTO persons(id,firstname,lastname,city,address)
+VALUE (1,'maung','kyaw','mandalay','no.9,myittar st');
+
+INSERT INTO persons(id,firstname,lastname,address,city)
+VALUE (3,'su','myatnoe','mandalay','no.9,myittar st');
+
+INSERT INTO persons(id,firstname,lastname,address,city)
+VALUE (4,'may','myatnoe','no.9,myittar st','mandalay');
+
+INSERT INTO persons VALUE(5,'aung','kyaw kyaw','bago','no.9,myittar st');
+
+INSERT INTO persons VALUE(6,'aung','tun tun','bago','no.9,myittar st');
+
+SELECT * FROM persons;
+
+INSERT INTO persons (id,firstname,lastname,city,address)
+VALUES  (7,'moe','kyaw','bago','no.9,myittar st'),
+        (8,'moe','wai','yangon','no.9,myittar st'), 
+        (9,'moe','aung','bago','no.9,myittar st'),
+        (10,'moe','mhaung','pyay','no.9,myittar st');
+
+INSERT INTO persons
+VALUES  (11,'aung','kyaw','bago','no.9,myittar st'),
+        (12,'aung aung','wai','yangon','no.9,myittar st'), 
+        (13,'aung','aung','bago','no.9,myittar st'),
+        (14,'aung','maung','pyay','no.9,myittar st');
+
+SELECT * FROM persons;

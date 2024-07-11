@@ -1,0 +1,65 @@
+=> EXERCISES
+
+CREATE TABLE IF NOT EXISTS officestaffs(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    salary DECIMAL(10,2),
+    status INT DEFAULT 1
+);
+
+DESC officestaffs;
+SHOW CREATE TABLE officestaffs;
+SHOW INDEX FROM officestaffs;
+
+INSERT INTO officestaffs(name,age,salary)
+VALUES  ('aung aung',20,500000),
+('maung maung',30,300000),
+('tun tun',46,200000),
+('zaw zaw',18,400000),
+('kaung kaung',17,250000);
+
+SELECT * FROM officestaffs;
+
+CREATE TABLE IF NOT EXISTS salarylogs(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    oldsalary DECIMAL(10,2) NOT NULL,
+    newsalary DECIMAL(10,2) NOT NULL,
+    officestaffs_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FROEIGN KEY(officestaffs_id) REFERENCES officestaffs(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+DESC salarylogs;
+SHOW CREATE TABLE salarylogs;
+SHOW INDEX FROM salarylogs;
+
+
+--------------------------------------------------------------
+=> BEFORE UPDATE
+
+DELIMITER //
+
+CREATE TRIGGER officestaffssalary_bfu
+BEFORE UPDATE
+ON officestaffs FOR EACH ROW
+BEGIN
+    IF OLD.salary <> NEW.salary THEN
+        INSERT INTO salarylogs(oldsalary,newsalary,officestaffs_id)
+        VALUE(OLD.salary,NEW.salary,OLD.id);
+    END IF;
+
+END; //
+
+DELIMITER ;
+
+SHOW TRIGGERS;
+
+10TE
+
+
+
+
+
+

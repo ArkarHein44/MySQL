@@ -1,0 +1,46 @@
+=> CONCAT & CONCAT_WS
+
+**************************************************
+// CONCAT က စကားစုတွေကပ်ပေးတာ delimeter ကိုကိုယ့်ဘာသာလိုက်ထည့်နေရ စကားစုများရင်အဆင်မပြေ။
+**************************************************
+// CONCAT_WS က စကားစုတွေကို delimeter ခံပီး ကပ်ပေးတာ
+စကားစုဘယ်လောက်များများ အဆင်ပြေ။
+**************************************************
+
+=CONCAT Syntax
+
+SELECT CONCAT(column1, column2,...) FROM tablename;
+
+=CONCAT_WS Syntax
+
+SELECT CONCAT_WS(delimeter,column1, column2,...) FROM tablename;
+--------------------------------------------------------
+
+SELECT CONCAT('Hello','World');
+SELECT CONCAT('Hello','  ','World');
+SELECT CONCAT('Hello','... ','World');
+SELECT CONCAT('Hello','... ','World',' ','We are Welcome');
+SELECT CONCAT('Hello','123456');
+SELECT CONCAT('Hello',"123456");
+SELECT CONCAT(10,20);
+
+SELECT * FROM suppliers;
+SELECT firstname,lastname  FROM suppliers;
+SELECT CONCAT(firstname,lastname) FROM suppliers;
+SELECT CONCAT(firstname,' ',lastname) AS fullname FROM suppliers;
+SELECT CONCAT(firstname,' ',lastname) AS "Full Name",phone FROM suppliers;
+SELECT CONCAT(firstname,' ',lastname) AS "Full Name",phone AS 'mobliephone' FROM suppliers;
+
+SELECT CONCAT(firstname,' ',lastname) AS "Full Name",phone AS 'mobliephone' 
+FROM suppliers;
+
+--------------------------------------------------------
+
+=> CONCAT_WS
+
+SELECT CONCAT_WS(' ','Hello','World');
+SELECT CONCAT_WS('-','Hello','World','We are Welcome');
+
+SELECT CONCAT_WS(' 'firstname,lastname) AS "Full Name",phone AS 'mobliephone' 
+FROM suppliers;
+

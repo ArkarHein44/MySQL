@@ -1,0 +1,100 @@
+=>VIEW
+
+=Syntax
+
+=CREATE
+
+CREATE VIEW viewtablename AS
+--- Statement
+
+=READ
+
+SELECT column1,column2 FROM viewtablename;
+
+=UPDATE
+
+CREATE OR REPLACE VIEW viewtablename AS
+--- Statement
+
+
+= DELETE
+
+DROP VIEW IF EXISTS viewtablename;
+
+---------------------------------------------------
+
+=EXERCISE
+
+CREATE TABLE IF NOT EXISTS shoppers(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    phone VARCHAR(15) NOT NULL UNIQUE
+);
+
+DESC shoppers;
+SHOW CREATE TABLE shoppers;
+SHOW INDEX FROM shoppers;
+
+INSERT INTO shoppers(name,phone)
+VALUES  ('aung aung','0911111'),
+('maung maung','0922222'),
+('kyaw kyaw','0933333'),
+('tun tun','0944444'),
+('zaw zaw','0955555'),
+('su su','0966666'),
+('nu nu','0977777'),
+('yu yu','0988888'),
+('aye aye','0999999'),
+('hla hla','0912121'),
+('ni lar','0913131'),
+('yu par','0914141'),
+('mu yar','0915151');
+
+
+SELECT * FROM shoppers;
+
+CREATE TABLE IF NOT EXISTS products(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    price DECIMAL(10,2) NOT NULL
+);
+
+DESC products;
+SHOW CREATE TABLE products;
+SHOW INDEX FROM products;
+
+INSERT INTO products(name,price)
+VALUES  ('redbull',1600),
+('deedo',800),
+('joy',900),
+('sponsor',1300),
+('water',1000);
+
+SELECT * FROM products;
+
+CREATE TABLE IF NOT EXISTS checkouts(
+    date TIMESTAMP DEFAULT NOW(),
+    product_id INT NOT NULL,
+    qty INT NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    payment ENUM('VISA','MPU','COD') NOT NULL,
+    shopper_id INT NOT NULL,
+    FOREIGN KEY(shopper_id) FRFERENCES shoppers(id),
+    FOREIGN KEY(product_id) FRFERENCES products(id),
+);
+
+DESC checkouts;
+SHOW CREATE TABLE checkouts;
+SHOW INDEX FROM checkouts;
+
+INSERT INTO checkouts(product_id,qty,total,payment,shopper_id)
+VALUES(
+
+);
+
+SELECT * FROM shoppers;
+SELECT * FROM products;
+SELECT * FROM checkouts;
+
+
+4CH

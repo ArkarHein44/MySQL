@@ -1,0 +1,115 @@
+=>MySql (Structured Query Language)
+
+=> Comments 
+=Single Line Comments
+# coment here
+-- comment here
+/* comment here */
+
+=Multi Line Comment
+/*
+
+comment
+
+*/
+
+
+...................................................
+
+
+=> Arithmetic Operators
+
++ (Add)
+- (Subtracton)
+* (Multiply)
+/ (Divide)
+% (Modulus)
+
+....................................................
+
+=> Comparasion Operators
+
+=           (Define)
+>           Greater than
+<           less than
+>=          Greater than or Equal
+<=          less than or Equal
+!= or  <>   Not Equal
+BETWEEN     Betweem as a certain range
+LIKE        Search for patten
+IN          Inside(To specify multiple possible values for a column)
+
+....................................................
+
+=> Exercise Addition Operator
+
+SELECT 10 + 2;                      #12
+SELECT '10' + 2;                    #12
+SELECT "10" + 2;                    #12
+SELECT "10" + '2';                  #12
+SELECT 10+20,20+30;                 #30 50
+SELECT '100' + "200", "300"+200     #300 500
+
+=>Exercise Subtracton Operator
+
+SELECT 10-2;                    #8
+SELECT 20-10, 30-15             #10 15
+SELECT '1000'-'500',500-'600';  #500 -600
+
+
+=>Exercise Multiplication Operator
+SELECT 10 * 2;              #20
+SELECT 5*3, 15 * 5;         #15 75
+SELECT '20'*3, '100' * 5;   #60 500
+
+=>Exercise Division Operator
+SELECT 10 / 2;                  #5.0000
+SELECT 2 / 3, 3/5;              #0.6667  0.6000
+SELECT '100' / 25 , '2000'/'2'  #4  1000
+SELECT 100 /0;                  #NULL
+## '100' သည်ကိန်းပြည့်ဖြစ်သည်။ 100 သည် 100.000 ဒသမကိန်းဖြစ်သည်။
+
+SELECT 10 DIV 2;                  #5
+SELECT 2 DIV 3, 3 DIV 5;              #0  0
+SELECT '100' DIV 25 , '2000'DIV'2'  #4  1000
+SELECT 100 DIV 0;                  #NULL
+## DIV ကို number data type တွင် ခွဲ၍ရေးရမည်။
+## DIV နှင့်စားလျှင် ကိန်းပြည့်ဖြင့်တွက်သည်။
+
+=> Exercise Modulus Operator
+SELECT 10 % 3;                  #1
+SELECT 20%3,30 % 5;             #2 0
+SELECT '20'%5, '500' % '300';   #0  200
+
+SELECT 10 MOD 3;                  #1
+SELECT 20 MOD 3,30 MOD 5;             #2 0
+SELECT '20' MOD 5, '500' MOD '300';   #0  200
+-----------------------------------------------------
+
+=> CRUD (Create / Read / Update / Delete)
+
+CREATE DATABASE     = create a new database (need database name)
+CREATE TABLE        = create a new table (need table name)
+
+ALTER DATABASE      = modified a database
+ALTER TABLE         = modified a table 
+
+DROP DATABASE       = delete a database
+DROP TABLE          = delete a table
+
+INSERT INTO         = insert new data into database table
+SELECT              = extracts data from database table
+UPDATE              = update data in a database table 
+DELETE              = delete data in a database table
+---------------------------------------------------------
+
+
+
+##Notes
+#Mysql codes များကို အကြီးဖြင့်ရေးခြင်းသည် ကုတ်ရောထွေးခြင်းကို လျှော့ ချနိုင်သည်။
+# ; ဖြင့်  ကုတ်ကိုအဆုံးသတ်ပေးရန်လိုပါသည်။
+
+### attandence codes
+#3.6.2024  --- 3ST
+#4.6.2024  --- 4DR
+#6.6.2024  --- 6DU  / 6OT

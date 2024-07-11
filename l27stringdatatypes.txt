@@ -1,0 +1,25 @@
+=>String Data Types
+
+Data Type                           Description
+CHAR(size)                          A Fixed Length String (can contain letters,numbers,special characters)(0 to 255)
+VARCHAR(size)                       A Variable Length String ( can contain letters,numbers,special characters) (0 to 255)
+TEXT                                Hold a string with maximum size 68,xxx (6kb)
+TINYTEXT                            Hold a string with maximum size 255 (255 bytes)
+MEDIUMTEXT                          Hold a string with maximum size 16,xxx,xxx (16 mb)
+LONGTEXT                            Hold a string with maximum size 4,xxx,xxx,xxx (4 gb)
+
+BINARY(size)                        Equal to CHAR(size), but store by binary byte string
+VARBINARY(size)                     Equal to CHAR(size), but store by binary byte string          
+BLOB()                              For BLOB(Binary Large Objects) - maximum size 68,xxx (6kb)
+TINYBLOB()                          For BLOB(Binary Large Objects) - maximum size(255 bytes)
+MEDIUMBLOB()                        For BLOB(Binary Large Objects) - maximum size 16,xxx,xxx (16 mb)
+LONGBLOB()                          For BLOB(Binary Large Objects) - maximum size 4,xxx,xxx,xxx (4 gb)
+
+ENUM('val1','val2','val3',...)      A string Object that can have only one value, choose from a list
+ENUM('val1','val2','val3',...)      A string Object that can have only 1 or more, choose from a list
+SET('val1','val2','val3',...)       
+
+
+= CHAR
+A Fixed Length String
+eg; telephone numbers, zip code, Yes,No Y/N, Male/Female M/F.

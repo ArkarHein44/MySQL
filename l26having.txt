@@ -1,0 +1,39 @@
+=> HAVING clause
+
+=Syntax
+
+SELECT column1,column2,column3,...
+FROM tablename
+GROUP BY column1,column2,column3
+HAVING condition;
+----------------------------------------------
+
+
+=EXERCISE
+
+SELECT * FROM customers;
+
+SELECT COUNT(*),city FROM customers
+GROUP BY city;
+
+SELECT COUNT(*),city FROM customers
+WHERE city LIKE 'ma%'
+GROUP BY city;
+
+SELECT COUNT(*),city FROM customers
+GROUP BY city
+HAVING city LIKE 'ma%';
+
+SELECT city,SUM(amount) FROM customers
+GROUP BY city;
+
+*error
+SELECT city,SUM(amount) FROM customers
+WHERE SUM(amount) > 150000
+GROUP By city;
+
+SELECT city,SUM(amount) FROM customers
+GROUP By city
+HAVING SUM(amount) > 150000;
+
+-------------------------------------------------
