@@ -34,7 +34,7 @@ VALUES ('2024-06-20','mr.tin',500000,1,1),\
 ('2024-07-2','ms.july',3000,2,1),
 ('2024-07-5','mr.tin',1000,2,1),
 ('2024-07-6','mr.tin',1000,2,1),
-('2024-07-10','mr.tin',200000,1,2),
+('2024-07-10','mr.tin',200000,1,2);
 
 SELECT * FROM capitals;
 
@@ -81,8 +81,112 @@ FROM vw_capitalbyusd
 WHERE accounts = "debit"
 ORDER BY date DESC;
 
-11PR
+DELIMITER //
+CREATE PROCEDURE cpreportaccounts_proc(p_acc VARCHAR(10))
+    BEGIN
+        SELECT date,name,amount,payment,accounts
+        FROM capitals
+        WHERE accounts = p_acc
+        ORDER BY date DESC;
+    END; //
+DELIMITER ;
+
+SHOW TABLES;
+SHOW FULL TABLES;
+
+SHOW TRIGGERS;
+
+=>SHOW
+SHOW PROCEDURE STATUS WHERE DB="wdf007";
+
+*error 
+CALL cpreportaccounts_proc();
+
+CALL cpreportaccounts_proc("credit");
+CALL cpreportaccounts_proc("DEBIT");
+
+=>Drop 
+DROP PROCEDURE IF EXISTS cpreportaccounts_proc
+
+--------------------------------------------------------------
+
+DELIMITER //
+CREATE PROCEDURE cpreportaccounts_proc(IN p_date DATE)
+    BEGIN
+        SELECT date,name,amount,payment,accounts
+        FROM capitals
+        WHERE date = p_date
+    END; //
+DELIMITER ;
+
+SHOW PROCEDURE STATUS WHERE DB="wdf007";
+ 
+CALL cpreportaccounts_proc("2024-07-01");
+CALL cpreportaccounts_proc("2024-07-10");
+
+--------------------------------------------------------------
+=>Input and Output Parameters
+SELECT * FROM Customers;
+
+SELECT COUNT(*) FROM customers;
+WHERE city = "bago"; //7
+
+SELECT COUNT(*) FROM customers;
+WHERE city = "yangon"; //8
+
+DELIMITER //
+CREATE PROCEDURE totalcureportbycity_proc(
+    IN p_city VARCHAR(50),
+    OUT p_totalcu INT)
+    BEGIN
+        SELECT COUNT(*) INTO p_totalcu FROM Customers
+        WHERE city = p_city;
+    END; //
+DELIMITER ;
+
+SHOW PROCEDURE STATUS WHERE DB = "wdf007";
+
+*error
+CALL totalcureportbycity_proc("bago");
+
+SET @totalcustomer := 0;
+SET @totalcustomer;
+
+CALL totalcureportbycity_proc("bagp",@totalcustomer);
+
+SELECT @totalcustomer;
+
+--------------------------------------------------------------
+=>Input and Multi Output Parameters
+
+SELECT * FROM customers;
+
+SELECT MIN(amount),MAX(amount),city FROM customers
+WHERE city="yangon";
+
+DELIMITER //
+CREATE PROCEDURE minmaxcubycity_proc(
+    IN p_city VARCHAR(50),
+    OUT p_minamount INT,
+    OUT p_maxamount INT)
+    BEGIN
+        SELECT MIN(amount),MAX(amount) INTO p_minamount,p_maxamount FROM Customers
+        WHERE city = p_city;
+    END; //
+DELIMITER ;
+
+SHOW PROCEDURE STATUS WHERE DB = "wdf007";
+
+SET @minvalue := 0;
+SET @maxvalue := 0;
+
+CALL minmaxcubycity_proc("yangon",@minvalue,@maxvalue);
+
+SELECT @minvalue,@maxvalue;
+
+SELECT (@minvalue,@maxvalue) AS differentamount;
+
+--------------------------------------------------------------
 
 
-
-
+15PD
