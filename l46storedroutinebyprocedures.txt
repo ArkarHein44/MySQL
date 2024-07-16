@@ -187,6 +187,33 @@ SELECT @minvalue,@maxvalue;
 SELECT (@minvalue,@maxvalue) AS differentamount;
 
 --------------------------------------------------------------
+=>IN / OUT / INOUT
+
+SELECT * FROM customers;
+
+SELECT MIN(age),MAX(age),city FROM customers
+WHERE city = "yangon";
+
+DELIMITER //
+
+CREATE PROCEDURE minmaxcuagebycity_proc(
+    INOUT p_city VARCHAR(50),
+    OUT p_mingae INT,
+    OUT p_maxage INT)
+BEGIN
+    SELECT MIN(age),MAX(age) INTO p_minage,p_maxage FROM customers
+    WHERE city = p_city;
+END; //
+
+DELIMITER ;
+
+SET @min := 0;
+SET @max := 0;
+
+CALL minmaxcuagebycity_proc(@city,@min,@max);
+
+SELECT @city,@min,@max;
+
+--------------------------------------------------------------
 
 
-15PD

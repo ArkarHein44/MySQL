@@ -1,0 +1,76 @@
+=> EVENT
+
+= EVENT TYPES (Schedule)
+
+(i) ONE TIME EVENT
+(ii) Recurring EVENT
+
++----+---------------+
+| id |  EVENT TYPES  |
++----+---------------+
+| 1  | 1 time event  |
+| 2  |Recurring event|
++----+---------------+
+
+=> Check event ON/OFF
+SHOW PROCESSLIST;
+
+SET GLOBAL event_scheduler = ON;
+SET GLOBAL event_scheduler = OFF;
+
+--------------------------------------------------------------
+=> (i) ONE TIME EVENT
+=Syntax
+
+=Method 1
+
+CREATE EVENT eventname
+ON SCHEDULE AT timestamp
+DO
+statements;
+
+=Method 2
+
+CREATE EVENT eventname
+ON SCHEDULE AT timestamp
+ON COMPLETION PRESERVE
+DO
+statements;
+
+(ii) Recurring EVENT
+
+=Method 1
+
+CREATE EVENT eventname
+ON SCHEDULE AT timestamp
+STARTS timestamp
+DO
+statements;
+
+=Method 2
+
+CREATE EVENT eventname
+ON SCHEDULE EVERY INTERVAL
+STARTS timestamp
+ENDS timestamp
+DO
+statements;
+--------------------------------------------------------------
+
+= EXERCISE
+
+=> (i) ONE TIME EVENT
+
+CREATE TABLE IF NOT EXISTS vipusers(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    emailverify INT
+);
+
+DESC vipusers;
+SHOW CREATE TABLE vipusers;
+SHOW INDEX FROM vipusers;
+
+
+16EV
