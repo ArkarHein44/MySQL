@@ -72,5 +72,120 @@ DESC vipusers;
 SHOW CREATE TABLE vipusers;
 SHOW INDEX FROM vipusers;
 
+INSERT INTO vipusers(name,email,emailverify)
+VALUES('aung aung','aungaung@gmail.com',1),
+('kyaw kyaw','kyawkyaw@gmail.com',1),
+('tun tun','tuntun@gmail.com',1),
+('maung maung','maungmaung@gmail.com',1),
+('zaw zaw','zawzaw@gmail.com',1);
 
-16EV
+INSERT INTO vipusers(name,email)
+VALUES('su su','susu@gmail.com'),
+('yu yu','yuyu@gmail.com'),
+('nu nu','nunu@gmail.com'),
+('myint myint','myintmyint@gmail.com'),
+('po po','popo@gmail.com');
+
+SELECT * FROM vipusers;
+
+=ONE TIME EVENT Method 1
+
+CREATE EVENT vipusers_ev
+ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 30 SECOND
+DO
+DELETE FROM vipusers WHERE emailverify IS NULL;
+
+=> List EVENTS 
+SHOW EVENTS
+
+SHOW EVENTS;
+SELECT * FROM vipusers;
+
+INSERT INTO vipusers(name,email)
+VALUES('su su','susu@gmail.com'),
+('yu yu','yuyu@gmail.com'),
+('nu nu','nunu@gmail.com'),
+('myint myint','myintmyint@gmail.com'),
+('po po','popo@gmail.com');
+
+SELECT * FROM vipusers;
+
+= ONE TIME EVENT Method 2
+
+CREATE EVENT vipusers_ev
+ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 30 SECOND
+ON COMPLETION PRESERVE
+DO
+DELETE FROM vipusers WHERE emailverify IS NULL;
+
+=> List EVENTS 
+SHOW EVENTS
+
+SHOW EVENTS;
+SELECT * FROM vipusers;
+
+=> DROP EVENT
+DROP EVENT IF EXISTS vipusers_ev;
+
+--------------------------------------------------------------
+
+(ii) Recurring EVENT
+
+CREATE TABLE IF NOT EXISTS dailywifipasswords(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    password VARCHAR(8) NOT NULL UNIQUE,
+    status INT DEFAULT 1
+);
+
+DESC dailywifipasswords;
+SHOW CREATE TABLE dailywifipasswords;
+SHOW INDEX FROM dailywifipasswords;
+
+INSERT INTO dailywifipasswords(password,status)
+VALUES('1111',2),
+('2222',2),
+('3333',2),
+('4444',2),
+('5555',1);
+
+SELECT * FROM dailywifipasswords;
+
+= Method 1
+
+CREAT EVENT dailywifipasswords_ev
+ON SCHEDULE EVERY 1 DAY
+STARTS "2024-7-17 21:15:00"
+DO
+UPDATE dailywifipasswords SET status = 2
+WHERE status = 1;
+
+SHOW EVENTS;
+
+SELECT * FROM dailywifipasswords;
+
+DROP EVENT IF EXISTS dailywifipasswords_ev;
+
+= Method 2
+
+INSERT INTO dailywifipasswords(password,status)
+VALUES('6666',1);
+
+SELECT * FROM dailywifipasswords;
+
+
+CREAT EVENT dailywifipasswordswithend_ev
+ON SCHEDULE EVERY 2 DAY
+STARTS "2024-7-17 21:22:00"
+ENDS "2024-10-25 21:22:00"
+DO
+UPDATE dailywifipasswords SET status = 2
+WHERE status = 1;
+
+SHOW EVENTS;
+
+SELECT * FROM dailywifipasswords;
+
+--------------------------------------------------------------
+
+
+17ES
