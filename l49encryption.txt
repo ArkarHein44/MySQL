@@ -1,0 +1,123 @@
+=>Encrypt
+
+=SHA1(string) Function (Secure Hash Algorithm 1) plain text to Encrypt Code
+=MD5(string) Function (Message-Digest Algorithm) plain text to Encrypt Code
+
+static code 
+*result 
+
+------------------------------------------------------
+=>Terminal
+
+=Linux
+ctrl+alt+text
+
+=> Linux
+mysql -u root -p
+or
+mysql -u root -p -h 127.0.0.1
+mydatabasep@ssw0rd2023A
+
+=mysql Logout
+exit;
+or
+\q
+------------------------------------------------------
+=Windows for XAMPP
+Windows_r
+cmd
+
+cd\
+cd xampp 
+cd mysql
+cd bin
+mysql -u root -p -h 127.0.0.1
+
+=Windows for X=WAMPP
+Windows_r
+cmd
+
+cd\
+cd wampp 
+cd bin
+cd mysql
+mysql -u root -p -h 127.0.0.1
+------------------------------------------------------
+
+SHOW DATABASES;
+USE wdf007;
+SHOW TABLES;
+
+CREATE TABLE accounts(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(50),
+    password VARCHAR(255)
+);
+
+DESC accounts;
+SHOW CREATE TABLE accounts;
+SHOW INDEX FROM accounts;
+
+INSERT INTO accounts(name,email,password)
+VALUES ('aung aung','aungaung@gmail.com',123456),
+('tun tun','tuntun@gmail.com',123456),
+('kyaw kyaw','kyawkyaw@gmail.com',123456);
+
+SELECT * FROM accounts;
+
+SELECT name,email,
+   IF(password = 12345,'correct password','incorrect password') AS 'verify'
+FROM accounts;
+
+SELECT name,email,
+    CASE
+        WHEN password = "12345" THEN "correct password is 13245"
+        WHEN password = "abcdef" THEN "correct password is abcdef"
+        WHEN password = "abcd1234" THEN "correct password is abcd1234"
+        ELSE "incorrect password"
+    END AS 'verify password'
+FROM accounts;
+
+SELECT name,email,
+    CASE
+        WHEN password = "12345" THEN "correct password is 13245"
+        WHEN password = "abcdef" THEN "correct password is abcdef"
+        WHEN password = "abcd1234" THEN "correct password is abcd1234"
+        ELSE "incorrect password"
+    END AS 'verify password'
+FROM accounts;
+
+SELECT name,email,
+    CASE
+        WHEN password = SHA1("12345") THEN "correct password is 13245"
+        WHEN password = SHA1("abcdef") THEN "correct password is abcdef"
+        WHEN password = SHA1("abcd1234") THEN "correct password is abcd1234"
+        ELSE "incorrect password"
+    END AS 'verify password'
+FROM accounts;
+
+INSERT INTO accounts(name,email,password)
+VALUES ('aung aung','aungaung@gmail.com',MD5(123456)),
+('tun tun','tuntun@gmail.com',MD5(123456)),
+('kyaw kyaw','kyawkyaw@gmail.com',SHA1(123456));
+
+SELECT name,email,
+    CASE
+        WHEN password = SHA1("12345") THEN "correct password is 13245"
+        WHEN password = SHA1("abcdef") THEN "correct password is abcdef"
+        WHEN password = SHA1("abcd1234") THEN "correct password is abcd1234"
+        ELSE "incorrect password"
+    END AS 'verify password'
+FROM accounts;
+
+SELECT name,email,
+    CASE
+        WHEN password = MD5("12345") THEN "correct password is 13245"
+        WHEN password = MD5("abcdef") THEN "correct password is abcdef"
+        WHEN password = MD5("abcd1234") THEN "correct password is abcd1234"
+        ELSE "incorrect password"
+    END AS 'verify password'
+FROM accounts;
+
+18TT
