@@ -1,0 +1,86 @@
+-u:root
+-p:Ayemarmar1995#
+
+mysql -u root -p
+Ayemarmar1995#
+exit
+
+mysql -u root -pAyemarmar1995#
+exit
+
+mysql -u root -p -h localhost
+Ayemarmar1995#
+exit
+
+=>Check user list
+Method 1
+SHOW DATABASES;
+USE mysql;
+SELECT user FROM user;
+
+Method 2
+
+SELECT user FROM mysql.user;
+SELECT user,host FROM mysql.user;
+
+
+-----------------------------------------------------
+=>Create User
+
+Method 1 ( localhost )
+
+CREATE USER 'user1'@'localhost' IDENTIFIED BY 'myprojectserver1Db@#$';
+GRANT ALL PRIVILEGES ON exerciseone.* TO 'user1'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+CREATE USER 'user2'@'localhost' IDENTIFIED BY 'myprojectserver1Db@#$';
+GRANT ALL PRIVILEGES ON exerciseone.* TO 'user2'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON exercisetwo.* TO 'user2'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+CREATE USER 'user3'@'localhost' IDENTIFIED BY 'myprojectserver1Db@#$';
+GRANT ALL PRIVILEGES ON *.* TO 'user3'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+Method 2 ( remote )
+CREATE USER 'user4'@'%' IDENTIFIED BY 'myprojectserver1Db@#$';
+GRANT ALL PRIVILEGES ON *.* TO 'user4'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+-----------------------------------------------------
+
+=> Update Password
+
+mysql -u root -pAyemarmar1995
+SELECT user();
+
+ALTER USER 'user1'@'localhost' IDENTIFIED BY 'myprojectserver2Db@#$';
+exit
+
+mysql -u user1 -pmyprojectserver2Db@#$
+
+-----------------------------------------------------
+
+=> Unlock User
+mysql -u root -p
+Ayemarmar1995
+
+SELECT user();
+
+ALTER USER 'user1'@'localhost' ACCOUNT UNLOCK;
+
+mysql -u user1 -p
+Ayemarmar1995
+
+-----------------------------------------------------
+
+=> Drop User
+
+mysql -u root -pAyemarmar1995
+
+SELECT user();
+
+DROP USER 'user1'@'localhost';
+
+-----------------------------------------------------
+
+22QN
